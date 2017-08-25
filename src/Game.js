@@ -2,6 +2,7 @@ import React from 'react';
 import { Board } from './Board';
 import { calculateWinner } from './utils';
 import { ToggleOrderButton } from './ToggleOrderButton';
+import { boardIsFull } from './utils';
 
 export class Game extends React.Component {
   constructor() {
@@ -52,10 +53,12 @@ export class Game extends React.Component {
     }
   }
 
-  setStatusBasedOnIfWinner(current) {
+  setStatusBasedOnBoardState(current) {
     const winner = calculateWinner(current.squares);
     if (winner) {
       return 'Winner: ' + winner;
+    } else if (boardIsFull(current.squares)) {
+        return 'Its a tie!';
     } else {
       return 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -84,7 +87,7 @@ export class Game extends React.Component {
 
     this.reverseHistoryIfRequired(moves);
 
-    let status = this.setStatusBasedOnIfWinner(current);
+    let status = this.setStatusBasedOnBoardState(current);
 
     return (
       <div className="game">
