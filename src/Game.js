@@ -53,10 +53,15 @@ export class Game extends React.Component {
     }
   }
 
+  highlightWinningSquares(winningSquares) {
+
+  }
+
   setStatusBasedOnBoardState(current) {
-    const winner = calculateWinner(current.squares);
-    if (winner) {
-      return 'Winner: ' + winner;
+    const winningSquares = calculateWinner(current.squares);
+    if (winningSquares) {
+      highlightWinningSquares(winningSquares);
+      return 'Winner: ' + winningSquares[0];
     } else if (boardIsFull(current.squares)) {
         return 'Its a tie!';
     } else {
