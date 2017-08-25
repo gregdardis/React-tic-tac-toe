@@ -12,33 +12,38 @@ export class Board extends React.Component {
     )
   }
 
+  // rowNumbers are zero indexed
+  createRow(rowNumber) {
+    const numColumns = 3;
+    const row = [];
+
+    for (let i = 0; i < numColumns; i++) {
+      row.push(
+        this.renderSquare(rowNumber * numColumns + i)
+      );
+    }
+    return row;
+  }
+
+  // board rows are zero indexed
+  createBoard() {
+    const sideLength = 3;
+    const rows = [];
+
+    for (let i = 0; i < sideLength; i++) {
+      rows.push(
+        <div className="board-row">
+          {this.createRow(i)}
+        </div>
+      );
+    }
+    return rows;
+  }
+
   render() {
-    var gridTopRow = [];
-    for (var i = 0; i < 3; i++) {
-      gridTopRow.push(this.renderSquare(i));
-    }
-
-    var gridMiddleRow = [];
-    for (var i = 3; i < 6; i++) {
-      gridMiddleRow.push(this.renderSquare(i));
-    }
-
-    var gridBottomRow = [];
-    for (var i = 6; i < 9; i++) {
-      gridBottomRow.push(this.renderSquare(i));
-    }
-
     return (
       <div>
-        <div className="board-row">
-          {gridTopRow}
-        </div>
-        <div className="board-row">
-          {gridMiddleRow}
-        </div>
-        <div className="board-row">
-          {gridBottomRow}
-        </div>
+        {this.createBoard()}
       </div>
     );
   }
