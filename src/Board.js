@@ -4,9 +4,16 @@ import { Square } from './Square';
 export class Board extends React.Component {
 
   renderSquare(i) {
+    let color='blue';
+    if (this.props.winningInfo && this.props.winningInfo.includes(i)) {
+      color='yellow';
+    } else {
+      color='white';
+    }
     return (
       <Square
         value={this.props.squares[i]}
+        color={color}
         onClick={() => this.props.onClick(i)}
       />
     )
