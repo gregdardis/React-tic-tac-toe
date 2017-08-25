@@ -1,6 +1,7 @@
 import React from 'react';
 import { Board } from './Board';
 import { calculateWinner } from './utils';
+import { ToggleOrderButton } from './ToggleOrderButton';
 
 export class Game extends React.Component {
   constructor() {
@@ -14,7 +15,7 @@ export class Game extends React.Component {
     };
   }
 
-  handleClick(i) {
+  handleBoardClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
@@ -29,6 +30,10 @@ export class Game extends React.Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
+  }
+
+  handleToggleButtonClick() {
+    alert("Toggle button clicked");
   }
 
   jumpTo(step) {
@@ -71,13 +76,15 @@ export class Game extends React.Component {
         <div className="game-board">
           <Board
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            onClick={(i) => this.handleBoardClick(i)}
           />
         </div>
         <div className="game-info">
           <div>{status}</div>
           <ol>{moves}</ol>
         </div>
+        <ToggleOrderButton
+          onClick={() => this.handleToggleButtonClick()}/>
       </div>
     );
   }
