@@ -33,7 +33,7 @@ export class Game extends React.Component {
   }
 
   handleToggleButtonClick() {
-    alert("Toggle button clicked");
+    // reverse the order of the elements
   }
 
   jumpTo(step) {

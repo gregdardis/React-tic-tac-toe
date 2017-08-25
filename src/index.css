@@ -50,12 +50,17 @@ ol, ul {
 }
 
 .toggle-order-button {
-  background-color: black;
+  background-color: green;
   font-size: 16px;
   font: 16px Arial, sans-serif;
-  color: #00FFFF;
+  color: white;
   font-weight: bold;
   height: 30px;
   margin-left: 10px;
   border: 2px solid red;
+  border-radius: 8px;
+}
+
+.toggle-order-button:hover {
+  background-color: black;
 }
