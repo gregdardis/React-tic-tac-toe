@@ -53,9 +53,9 @@ export class Game extends React.Component {
     }
   }
 
-  setStatusBasedOnBoardState(current, winningSquares) {
-    if (winningSquares) {
-      return 'Winner: ' + winningSquares[0];
+  setStatusBasedOnBoardState(current, winningInfo) {
+    if (winningInfo) {
+      return 'Winner: ' + winningInfo[0];
     } else if (boardIsFull(current.squares)) {
         return 'Its a tie!';
     } else {
@@ -86,10 +86,10 @@ export class Game extends React.Component {
 
     this.reverseHistoryIfRequired(moves);
 
-    // winningSquares has two elements: an X or O depending on which player won,
-    // and an array containing the numbers of the 3 winning squares
-    const winningSquares = calculateWinner(current.squares);
-    let status = this.setStatusBasedOnBoardState(current, winningSquares);
+    // winningInfo has 4 elements - the first element is an X or an O, depending
+    // on who won, the next 3 are the 3 winning squares
+    const winningInfo = calculateWinner(current.squares);
+    let status = this.setStatusBasedOnBoardState(current, winningInfo);
 
     return (
       <div className="game">
