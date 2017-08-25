@@ -52,10 +52,18 @@ export class Game extends React.Component {
     }
   }
 
+  setStatusBasedOnIfWinner(current) {
+    const winner = calculateWinner(current.squares);
+    if (winner) {
+      return 'Winner: ' + winner;
+    } else {
+      return 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, moveIndex) => {
       const moveDescription = moveIndex ?
@@ -76,12 +84,8 @@ export class Game extends React.Component {
 
     this.reverseHistoryIfRequired(moves);
 
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    let status = this.setStatusBasedOnIfWinner(current);
+
     return (
       <div className="game">
         <div className="game-board">
