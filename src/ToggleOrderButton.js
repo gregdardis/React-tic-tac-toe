@@ -5,7 +5,7 @@ export function ToggleOrderButton(props) {
     <button
       className="toggle-order-button"
       onClick={props.onClick} >
-      Reverse Order
+      {props.buttonText}
     </button>
   );
 }

@@ -12,6 +12,7 @@ export class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      historyReversed: false,
     };
   }
 
@@ -33,7 +34,9 @@ export class Game extends React.Component {
   }
 
   handleToggleButtonClick() {
-    // reverse the order of the elements
+    this.setState({
+      historyReversed: !this.state.historyReversed
+    });
   }
 
   jumpTo(step) {
@@ -41,6 +44,12 @@ export class Game extends React.Component {
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });
+  }
+
+  reverseHistoryIfRequired(moves) {
+    if (this.state.historyReversed) {
+      moves.reverse();
+    }
   }
 
   render() {
@@ -65,6 +74,8 @@ export class Game extends React.Component {
         );
     })
 
+    this.reverseHistoryIfRequired(moves);
+
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
@@ -84,6 +95,7 @@ export class Game extends React.Component {
           <ol>{moves}</ol>
         </div>
         <ToggleOrderButton
+          buttonText='Toggle Order'
           onClick={() => this.handleToggleButtonClick()}/>
       </div>
     );
