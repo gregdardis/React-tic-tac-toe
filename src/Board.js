@@ -5,15 +5,19 @@ export class Board extends React.Component {
 
   renderSquare(i) {
     let color;
+    let textColor;
     if (this.props.winningInfo && this.props.winningInfo.includes(i)) {
       color='green';
+      textColor='white';
     } else {
       color='white';
+      textColor='black';
     }
     return (
       <Square
         value={this.props.squares[i]}
         color={color}
+        textColor={textColor}
         onClick={() => this.props.onClick(i)}
       />
     )
