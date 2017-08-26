@@ -4,7 +4,7 @@ import { Square } from './Square';
 export class Board extends React.Component {
 
   renderSquare(i) {
-    let color='blue';
+    let color;
     if (this.props.winningInfo && this.props.winningInfo.includes(i)) {
       color='yellow';
     } else {
