@@ -6,7 +6,7 @@ export class Board extends React.Component {
   renderSquare(i) {
     let color;
     if (this.props.winningInfo && this.props.winningInfo.includes(i)) {
-      color='yellow';
+      color='green';
     } else {
       color='white';
     }
